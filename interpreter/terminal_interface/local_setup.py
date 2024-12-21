@@ -187,6 +187,35 @@ def local_setup(interpreter, provider=None, model=None):
             )
             return None
 
+    def install_os_mode_packages():
+        required_packages = [
+            "opencv-python",
+            "pyautogui",
+            "plyer",
+            "pywinctl",
+            "pytesseract",
+            "sentence-transformers",
+            "ipywidgets",
+            "torch",
+            "timm",
+            "screeninfo",
+        ]
+
+        missing_packages = []
+
+        for package in required_packages:
+            try:
+                dist = pkg_resources.get_distribution(package)
+            except pkg_resources.DistributionNotFound:
+                missing_packages.append(package)
+
+        if missing_packages:
+            print(
+                '{} isn\'t installed. Please run `pip install "open-interpreter[os]"` to install all required packages for OS mode'.format(
+                    ", ".join(missing_packages)
+                )
+            )
+
     # START OF LOCAL MODEL PROVIDER LOGIC
     interpreter.display_message(
         "\n**Open Interpreter** supports multiple local model providers.\n"

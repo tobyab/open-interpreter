@@ -1,5 +1,5 @@
 """
-This is an Open Interpreter profile. It configures Open Interpreter to run `llama3` using Ollama.
+This is an Open Interpreter profile. It configures Open Interpreter to run OS mode on any local model.
 
 Images sent to the model will be described with `moondream`. The model will be instructed how to control your mouse and keyboard.
 """
@@ -75,13 +75,11 @@ interpreter.computer.system_message = ""  # The default will explain how to use 
 # Misc settings
 interpreter.auto_run = True
 interpreter.offline = True
+interpreter.os = True
 
 # Final message
 interpreter.display_message(
     "**Warning:** In this mode, Open Interpreter will not require approval before performing actions. Be ready to close your terminal."
-)
-interpreter.display_message(
-    "\n**Note:** Codestral is a relatively weak model, so OS mode is highly experimental. Try using a more powerful model for OS mode with `interpreter --os`."
 )
 interpreter.display_message(
     f"> Model set to `{interpreter.llm.model}`, experimental OS control enabled"
